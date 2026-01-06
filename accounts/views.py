@@ -39,3 +39,7 @@ def login_view(request):
         form = LoginForm(request)
 
     return render(request, 'login.html', {'form': form})
+
+
+def profile_view(request):
+    return render(request, 'profile.html')
