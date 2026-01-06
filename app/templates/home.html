@@ -3,17 +3,32 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
+
 <p>Hi {{ user.username }}!</p>
 <a href="{% url 'profile' %}">View Profile</a>
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
 </form>
+
+<h2>Cat Listings</h2>
+<ul>
+    {% for cat in cats %}
+        <li>
+            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
+        </li>
+    {% endfor %}
+</ul>
+
 {% else %}
+
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a>
 <a href="{% url 'signup' %}">Sign Up</a>
-<a href="{% url 'admin_signup' %}">Want to create a listing?</a>
+{% comment %} <a href="{% url 'admin_signup' %}">Want to create a listing?</a> {% endcomment %}
+
 {% endif %}
+
 {% endblock %}

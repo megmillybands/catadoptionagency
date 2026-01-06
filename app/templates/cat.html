@@ -1,0 +1,14 @@
+{% extends "home.html" %}
+
+{% block showcats %}
+
+<h2>Cat Listings</h2>
+<ul>
+    {% for cat in cats %}
+        <li>
+            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

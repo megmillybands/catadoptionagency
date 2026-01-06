@@ -7,7 +7,11 @@ def signup_view(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            selected_groups = form.cleaned_data['user_type']
+            for group in selected_groups:
+                user.groups.add(group)
+            user.save()
             return redirect('/')
     else:
         form = UserRegisterForm()
@@ -15,18 +19,18 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def admin_signup_view(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.is_superuser = True
-            user.save()
-            return redirect('/')
-    else:
-        form = UserRegisterForm()
+# def admin_signup_view(request):
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             user.is_superuser = True
+#             user.save()
+#             return redirect('/')
+#     else:
+#         form = UserRegisterForm()
 
-    return render(request, 'signup.html', {'form': form})
+#     return render(request, 'signup.html', {'form': form})
 
 
 def login_view(request):
