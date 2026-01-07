@@ -7,4 +7,16 @@
 <h2>Your Profile</h2>
 <a href="{% url 'create_listing' %}">List a Cat for Adoption</a>
 
+<h3>Your Listings</h3>
+<ul>
+    {% for cat in cats %}
+        <li>
+            <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+            <a href="{% url 'cat_details' cat.name %}">
+            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}

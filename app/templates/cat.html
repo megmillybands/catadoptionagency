@@ -1,14 +1,15 @@
-{% extends "home.html" %}
+{% extends "base.html" %}
 
-{% block showcats %}
+{% block title %}Cat Details{% endblock %}
 
-<h2>Cat Listings</h2>
-<ul>
-    {% for cat in cats %}
-        <li>
-            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
-        </li>
-    {% endfor %}
-</ul>
+{% block content %}
+
+<h2>{{ cat.name }}</h2>
+<h3>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h3>
+<img src="{{ cat.image.url }}">
+<p>{{ cat.price }}</p>
+<p>{{ cat.description }}</p>
+<p>Listing posted by {{ cat.user.username }}</p>
+
 
 {% endblock %}

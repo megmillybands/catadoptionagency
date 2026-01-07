@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-# from django.contrib import messages
 from .forms import *
+from app.models import *
 from django.contrib.auth import login
 
 def signup_view(request):
@@ -19,25 +19,12 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 
-# def admin_signup_view(request):
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             user.is_superuser = True
-#             user.save()
-#             return redirect('/')
-#     else:
-#         form = UserRegisterForm()
-
-#     return render(request, 'signup.html', {'form': form})
-
-
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            login(request, form.get_user())
+            user = form.get_user()
+            login(request, user)
             return redirect('/')
     else:
         form = LoginForm(request)
@@ -46,4 +33,12 @@ def login_view(request):
 
 
 def profile_view(request):
-    return render(request, 'profile.html')
+    user = request.user
+    active_user = User.objects.get(username=user.username)
+    user_cats = Cat.objects.filter(user=active_user)
+    context = {"cats": user_cats}
+
+    return render(request, 'profile.html', context)
+
+
+# def edit_account(request):
