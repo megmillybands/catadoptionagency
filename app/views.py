@@ -4,6 +4,7 @@ from app.models import *
 from accounts.models import *
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
+from django.http import HttpResponse
 
 
 def home(request):
@@ -46,21 +47,22 @@ def toggle_bookmark(request, name):
     active_user = User.objects.get(username=user.username)
     # bookmarked = False
     bookmark = Bookmark.objects.filter(user=active_user, cat=cat)
-    all_bookmarks = Bookmark.objects.all()
+    # all_bookmarks = Bookmark.objects.all()
 
-    if bookmark.exists():
-        bookmark.delete()
-        bookmarked = False
-    else:
-        Bookmark.objects.create(user=request.user, cat=cat)
-        bookmarked = True
+    if request.method == "POST":
+        if bookmark.exists():
+            bookmark.delete()
+            bookmarked = False
+        else:
+            Bookmark.objects.create(user=active_user, cat=cat)
+            bookmarked = True
 
-    context = {
-        'is_bookmarked': bookmarked,
-        'all_bookmarks': all_bookmarks,
-    }
+        context = {
+            'is_bookmarked': bookmarked,
+        }
 
-    return render(request, 'partials/bookmark-button.html', context)
+        return render(request, 'partials/bookmark-button.html', context)
+    return HttpResponse("This view only accepts POST requests", status=405)
 
 
 def send_message(request, name):
