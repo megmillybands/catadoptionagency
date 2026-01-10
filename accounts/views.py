@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import *
+from accounts.models import *
 from app.models import *
 from django.contrib.auth import login
 

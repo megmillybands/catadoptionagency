@@ -1,0 +1,17 @@
+{% if user.is_authenticated %}
+    {% if is_bookmarked %}
+        <button hx-post="{% url 'toggle_bookmark' cat.name %}"
+                hx-target="#bookmark-{{ cat.name }}"
+                hx-swap="innerHTML"
+                class="bookmarked-btn">
+            ★ Bookmarked
+        </button>
+    {% else %}
+        <button hx-post="{% url 'toggle_bookmark' cat.name %}"
+                hx-target="#bookmark-{{ cat.name }}"
+                hx-swap="innerHTML"
+                class="unbookmarked-btn">
+            ☆ Bookmark
+        </button>
+    {% endif %}
+{% endif %}

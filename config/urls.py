@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from app.views import *
+from accounts.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -9,6 +10,8 @@ urlpatterns = [
     path("", home, name="home"),
     path("create_listing/", create_listing, name="create_listing"),
     path("<str:name>/", cat_details, name="cat_details"),
+    path("<str:name>/bookmark/", toggle_bookmark, name="toggle_bookmark"),
+    path("<str:name>/message/", send_message, name="send_message"),
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
 ]

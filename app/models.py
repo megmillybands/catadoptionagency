@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
 
 GENDER = [
@@ -16,3 +15,4 @@ class Cat(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.ImageField(upload_to='cat_images/')
+

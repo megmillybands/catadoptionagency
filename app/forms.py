@@ -18,3 +18,8 @@ class CatCreationForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+    
+
+class MessageForm(forms.Form):
+    subject = forms.CharField(max_length=50)
+    message = forms.CharField(max_length=500)
