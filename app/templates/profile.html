@@ -1,22 +1,33 @@
 {% extends "base.html" %}
+{% load user_tags %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
 
+<a href="{% url 'home' %}">Back to Home</a>
+
 <h2>Your Profile</h2>
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+<a href="{% url 'change_password' %}">Change Password</a>
+<a href="{% url 'delete_account' %}">Delete Account</a>
+
+{% if request.user|has_group:"Lister" %}
+
 <a href="{% url 'create_listing' %}">List a Cat for Adoption</a>
 
 <h3>Your Listings</h3>
 <ul>
     {% for cat in cats %}
         <li>
-            <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+            <img src="{{ cat.image.url }}">
             <a href="{% url 'cat_details' cat.name %}">
             {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
             </a>
         </li>
     {% endfor %}
 </ul>
+
+{% endif %}
 
 {% endblock %}

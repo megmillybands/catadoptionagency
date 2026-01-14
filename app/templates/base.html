@@ -1,15 +1,16 @@
 {% load django_htmx %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
-  <script src="unpkg.com"></script>
   <title>{% block title %}Cat Adoption Agency{% endblock %}</title>
-  {% htmx_script %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body>
   <main>
     {% block content %}
     {% endblock %}

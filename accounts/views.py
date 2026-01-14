@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import *
 from accounts.models import *
 from app.models import *
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -37,9 +38,43 @@ def profile_view(request):
     user = request.user
     active_user = User.objects.get(username=user.username)
     user_cats = Cat.objects.filter(user=active_user)
-    context = {"cats": user_cats}
+    context = {"cats": user_cats,
+               "user": active_user}
 
     return render(request, 'profile.html', context)
 
 
-# def edit_account(request):
+def edit_account(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+
+    return render(request, 'profile-details.html', {"form": form})
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, 'profile-details.html', {"form": form})
+
+
+def delete_account(request):
+    user = request.user
+    if request.method == 'POST':
+        logout(request)
+        user.delete()
+        return redirect('/')
+    
+    return render(request, 'user-delete.html')
+
+

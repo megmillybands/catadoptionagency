@@ -4,11 +4,20 @@
 
 {% block content %}
 
+<a href="{% url 'home' %}">Back to Home</a>
+
+{% if user.username == cat.user.username %}
+
+<a href="{% url 'edit_listing' cat.name %}">Edit Listing</a>
+<a href="{% url 'delete_listing' cat.name %}">Delete Listing</a>
+
+{% endif %}
+
 <h2>{{ cat.name }}</h2>
 <h3>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h3>
 <img src="{{ cat.image.url }}">
 
-{% if user.is_authenticated %}
+{% comment %} {% if user.is_authenticated %}
 
 <div id="bookmark-{{ cat.name }}">
     {% include 'partials/bookmark-button.html' %}
@@ -18,7 +27,7 @@
 
 <p>You must be logged in to bookmark listings.</p>
 
-{% endif %}
+{% endif %} {% endcomment %}
 
 <p>{{ cat.price }}</p>
 <p>{{ cat.description }}</p>

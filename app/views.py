@@ -31,6 +31,32 @@ def create_listing(request):
     return render(request, 'cat-form.html', {'form': form})
 
 
+def edit_listing(request, name):
+    user = request.user
+    cat = Cat.objects.get(name=name)
+    if user.username == cat.user.username:
+        if request.method == "POST":
+            form = CatCreationForm(request.POST, request.FILES, user=user, instance=cat)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        else:
+            form = CatCreationForm(user=user, instance=cat)
+    else:
+        return redirect('/')
+    
+    return render(request, 'cat-form.html', {'form': form})
+
+
+def delete_listing(request, name):
+    cat = Cat.objects.get(name=name)
+    if request.method == 'POST':
+        cat.delete(keep_parents=True)
+        return redirect('/')
+
+    return render(request, 'listing-delete.html', {'cat': cat})
+
+
 def cat_details(request, name):
     cat = Cat.objects.get(name=name)
 
@@ -39,30 +65,6 @@ def cat_details(request, name):
     }
 
     return render(request, 'cat.html', context)
-
-
-def toggle_bookmark(request, name):
-    cat = Cat.objects.get(name=name)
-    user = request.user
-    active_user = User.objects.get(username=user.username)
-    # bookmarked = False
-    bookmark = Bookmark.objects.filter(user=active_user, cat=cat)
-    # all_bookmarks = Bookmark.objects.all()
-
-    if request.method == "POST":
-        if bookmark.exists():
-            bookmark.delete()
-            bookmarked = False
-        else:
-            Bookmark.objects.create(user=active_user, cat=cat)
-            bookmarked = True
-
-        context = {
-            'is_bookmarked': bookmarked,
-        }
-
-        return render(request, 'partials/bookmark-button.html', context)
-    return HttpResponse("This view only accepts POST requests", status=405)
 
 
 def send_message(request, name):
