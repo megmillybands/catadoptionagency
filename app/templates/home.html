@@ -15,16 +15,14 @@
 
 <h2>Cat Listings</h2>
 <div class="cat-container">
-    <ul>
-        {% for cat in cats %}
-            <li>
-                <img src="{{ cat.image.url }}" class="cat-image">
-                <a href="{% url 'cat_details' cat.name %}" class="cat-link">
-                {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% for cat in cats %}
+        <div class="cat-detail-container">
+            <img src="{{ cat.image.url }}" class="cat-image">
+            <a href="{% url 'cat_details' cat.name %}" class="cat-link">
+            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
+            </a>
+        </div>
+    {% endfor %}
 </div>
 
 {% else %}
