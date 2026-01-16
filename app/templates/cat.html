@@ -4,38 +4,29 @@
 
 {% block content %}
 
-<a href="{% url 'home' %}">Back to Home</a>
+<a href="{% url 'home' %}" class="button-link">Back to Home</a>
 
 {% if user.username == cat.user.username %}
 
-<a href="{% url 'edit_listing' cat.name %}">Edit Listing</a>
-<a href="{% url 'delete_listing' cat.name %}">Delete Listing</a>
+<a href="{% url 'edit_listing' cat.name %}" class="button-link">Edit Listing</a>
+<a href="{% url 'delete_listing' cat.name %}" class="button-link">Delete Listing</a>
 
 {% endif %}
 
-<h2>{{ cat.name }}</h2>
-<h3>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h3>
-<img src="{{ cat.image.url }}">
-
-{% comment %} {% if user.is_authenticated %}
-
-<div id="bookmark-{{ cat.name }}">
-    {% include 'partials/bookmark-button.html' %}
+<div class="cat-info-page">
+    <h2>{{ cat.name }}</h2>
+    <h3>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h3>
+    {% comment %} <div class="image-backdrop"> {% endcomment %}
+        <img src="{{ cat.image.url }}" class="big-cat-image">
+    {% comment %} </div> {% endcomment %}
+    <p>${{ cat.price }}</p>
+    <p>{{ cat.description }}</p>
+    <p>Listing posted by {{ cat.user.username }}</p>
 </div>
-
-{% else %}
-
-<p>You must be logged in to bookmark listings.</p>
-
-{% endif %} {% endcomment %}
-
-<p>{{ cat.price }}</p>
-<p>{{ cat.description }}</p>
-<p>Listing posted by {{ cat.user.username }}</p>
 
 {% if user.is_authenticated %}
 
-<a href="{% url 'send_message' cat.name %}">Send a message to {{ cat.user.username }}:</a>
+<a href="{% url 'send_message' cat.name %}" class="button-link">Send a message to {{ cat.user.username }}:</a>
 
 {% else %}
 

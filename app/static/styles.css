@@ -1,28 +1,53 @@
+@font-face {
+    font-family: 'butterpop';
+    src: url(/app/static/fonts/butterpop-webfont.woff) format('woff');
+    src: url(/app/static/fonts/butterpop-webfont.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'coolvetica';
+    src: url(/app/static/fonts/coolvetica_rg-webfont.woff) format('woff');
+    src: url(/app/static/fonts/coolvetica_rg-webfont.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'sunny weather';
+    src: url(/app/static/fonts/sunny_weather_demo-webfont.woff) format('woff');
+    src: url(/app/static/fonts/sunny_weather_demo-webfont.woff2) format('woff2');
+}
+
 body {
     background-color: #fefae0;
     text-align: center;
 }
 
-img {
-    width: 20vw;
-    max-width: 25vw;
-    max-height: 25vw;
-}
-
-a {
-    text-decoration: none;
+p {
+    font-family: 'sunny weather';
     color: #283618;
 }
 
+img {
+    width: 20vw;
+}
+
+a {
+    font-family: 'coolvetica';
+    text-decoration: none;
+    color: #BC6C25;
+}
+
 h1 {
+    font-family: 'butterpop';
     color: #606C38;
 }
 
 h2 {
+    font-family: 'butterpop';
     color: #606C38;
 }
 
 h3 {
+    font-family: 'butterpop';
     color: #283618;
 }
 
@@ -53,3 +78,47 @@ h3 {
 .cat-link {
     justify-self: right;
 } */
+
+/* .image-backdrop {
+    display: inline-flex;
+    background-color: #BC6C25;
+    padding: 10px;
+    border-radius: 5px;
+} */
+
+.big-cat-image {
+    width: 40vw;
+    align-items: center;
+    border: 10px ridge #606C38;
+    border-radius: 5px;
+}
+
+.cat-info-page p {
+    font-size: 25px;
+}
+
+button {
+    font-family: 'coolvetica';
+    background-color: #DDA15E;
+    color: #606C38;
+    border-style: solid;
+    border-color: #606C38;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.button-link {
+    display: inline-block;
+    background-color: #BC6C25;
+    color: #fefae0;
+    border-style: solid;
+    border-color: #DDA15E;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+input #id_image {
+    color: purple;
+}

@@ -7,7 +7,7 @@
 {% if user.is_authenticated %}
 
 <h1>Hi {{ user.username }}!</h1>
-<a href="{% url 'profile' %}">View Profile</a>
+<a href="{% url 'profile' %}" class="button-link">View Profile</a>
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
@@ -28,8 +28,8 @@
 {% else %}
 
 <p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a>
-<a href="{% url 'signup' %}">Sign Up</a>
+<a href="{% url 'login' %}" class="button-link">Log In</a>
+<a href="{% url 'signup' %}" class="button-link">Sign Up</a>
 
 {% endif %}
 
