@@ -5,16 +5,19 @@
 
 {% block content %}
 
-<a href="{% url 'home' %}" class="button-link">Back to Home</a>
+<a href="{% url 'home' %}" class="home-button">Back to Home</a>
 
 <h2>Your Profile</h2>
-<a href="{% url 'edit_profile' %}" class="button-link">Edit Profile</a>
-<a href="{% url 'change_password' %}" class="button-link">Change Password</a>
-<a href="{% url 'delete_account' %}" class="button-link">Delete Account</a>
+<div class="button-container">
+    <a href="{% url 'edit_profile' %}" class="button-link">Edit Profile</a>
+    <a href="{% url 'change_password' %}" class="button-link">Change Password</a>
+    <a href="{% url 'delete_account' %}" class="button-link">Delete Account</a>
 
 {% if request.user|has_group:"Lister" %}
 
 <a href="{% url 'create_listing' %}" class="button-link">List a Cat for Adoption</a>
+
+</div>
 
 <h3>Your Listings</h3>
 <div class="cat-container">
@@ -31,6 +34,12 @@
         <p>You have not listed any cats for adoption.</p>
     {% endif %}
 </div>
+
+{% else %}
+
+</div>
+
+<p>Your account does not have listing permissions.</p>
 
 {% endif %}
 

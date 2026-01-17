@@ -4,14 +4,18 @@
 
 {% block content %}
 
+<h1 class="title-header">Cat Adoption Agency</h1>
+
 {% if user.is_authenticated %}
 
 <h1>Hi {{ user.username }}!</h1>
-<a href="{% url 'profile' %}" class="button-link">View Profile</a>
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Log Out</button>
-</form>
+<div class="button-container">
+    <a href="{% url 'profile' %}" class="button-link">View Profile</a>
+    <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+    </form>
+</div>
 
 <h2>Cat Listings</h2>
 <div class="cat-container">
@@ -27,9 +31,11 @@
 
 {% else %}
 
-<p>You are not logged in</p>
-<a href="{% url 'login' %}" class="button-link">Log In</a>
-<a href="{% url 'signup' %}" class="button-link">Sign Up</a>
+<p>You are not logged in.</p>
+<div class="button-container">
+    <a href="{% url 'login' %}" class="button-link">Log In</a>
+    <a href="{% url 'signup' %}" class="button-link">Sign Up</a>
+</div>
 
 {% endif %}
 

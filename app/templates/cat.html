@@ -4,24 +4,25 @@
 
 {% block content %}
 
-<a href="{% url 'home' %}" class="button-link">Back to Home</a>
+<a href="{% url 'home' %}" class="home-button">Back to Home</a>
+
+<h1>{{ cat.name }}</h1>
+<h2>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h2>
 
 {% if user.username == cat.user.username %}
 
-<a href="{% url 'edit_listing' cat.name %}" class="button-link">Edit Listing</a>
-<a href="{% url 'delete_listing' cat.name %}" class="button-link">Delete Listing</a>
+<div class="button-container">
+    <a href="{% url 'edit_listing' cat.name %}" class="button-link">Edit Listing</a>
+    <a href="{% url 'delete_listing' cat.name %}" class="button-link">Delete Listing</a>
+</div>
 
 {% endif %}
 
 <div class="cat-info-page">
-    <h2>{{ cat.name }}</h2>
-    <h3>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h3>
-    {% comment %} <div class="image-backdrop"> {% endcomment %}
-        <img src="{{ cat.image.url }}" class="big-cat-image">
-    {% comment %} </div> {% endcomment %}
-    <p>${{ cat.price }}</p>
+    <img src="{{ cat.image.url }}" class="big-cat-image">
+    <h3>${{ cat.price }}</h3>
     <p>{{ cat.description }}</p>
-    <p>Listing posted by {{ cat.user.username }}</p>
+    <p class="small-text">Listing posted by {{ cat.user.username }}</p>
 </div>
 
 {% if user.is_authenticated %}

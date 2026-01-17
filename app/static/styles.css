@@ -18,7 +18,22 @@
 
 body {
     background-color: #fefae0;
+    background-image: url('/app/static/images/Untitled\ design.png');
+    background-size: 250px;
+    background-repeat: repeat;
     text-align: center;
+}
+
+main {
+    background-color: #fefae0;
+    border: 10px solid #DDA15E;
+    border-radius: 10px;
+    box-shadow: 2px 2px #283618;
+    width: fit-content;
+    margin: 20px;
+    padding: 20px;
+    justify-self: center;
+    align-self: center;
 }
 
 p {
@@ -48,6 +63,44 @@ h3 {
     color: #283618;
 }
 
+.title-header {
+    font-size: 45px;
+    color: #DDA15E;
+    text-shadow: 2px 2px #BC6C25;
+}
+
+.home-button {
+    display: inline-block;
+    font-size: 15px;
+    background-color: #fefae0;
+    color: #BC6C25;
+    border-style: solid;
+    border-color: #BC6C25;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 0 0 0;
+}
+
+.home-button:hover {
+    background-color: #606C38;
+    border-color: #283618;
+    color: #fefae0;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background: #BC6C25;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #DDA15E;
+    border-radius: 5px;
+    box-shadow: 2px 2px #283618;
+}
+
 .cat-container {
     display: flex;
     flex-wrap: wrap;
@@ -58,6 +111,7 @@ h3 {
     align-self: center;
     border: none;
     border-radius: 5px;
+    box-shadow: 2px 2px #283618;
 }
 
 .cat-detail-container {
@@ -70,41 +124,45 @@ h3 {
     width: 480px;
     border: none;
     border-radius: 5px;
+    box-shadow: 2px 2px #283618;
 }
 
 .cat-image {
     width: 230px;
     max-width: fit-content;
     height: auto;
-    border: 5px ridge #606C38;
+    border: 5px solid #BC6C25;
     border-radius: 5px;
+    box-shadow: 2px 2px #283618;
 }
 
-/* .cat-link {
-    justify-self: right;
-} */
+.cat-link {
+    color: #BC6C25;
+    width: 230px;
+}
 
-/* .image-backdrop {
-    display: inline-flex;
-    background-color: #BC6C25;
-    padding: 10px;
-    border-radius: 5px;
-} */
+.cat-link:hover {
+    color: #606C38;
+    text-decoration: underline wavy;
+}
 
 .big-cat-image {
     width: 40vw;
     max-width: 500px;
     align-items: center;
-    border: 10px ridge #606C38;
+    border: 10px solid #606C38;
     border-radius: 5px;
+    box-shadow: 2px 2px #283618;
+    margin-top: 20px;
 }
 
-/* .cat-info-page p {
-    font-size: 25px;
-} */
+.small-text {
+    font-size: 20px;
+}
 
 button {
     font-family: 'coolvetica';
+    font-size: 15px;
     cursor: pointer;
     background-color: #DDA15E;
     color: #606C38;
@@ -115,7 +173,14 @@ button {
     margin: 5px;
 }
 
+button:hover {
+    background-color: #606C38;
+    border-color: #283618;
+    color: #fefae0;
+}
+
 .button-link {
+    font-size: 15px;
     display: inline-block;
     cursor: pointer;
     background-color: #BC6C25;
@@ -125,6 +190,18 @@ button {
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    width: max-content;
+}
+
+.button-link:hover {
+    background-color: #606C38;
+    border-color: #283618;
+}
+
+.danger-button:hover {
+    background-color: crimson;
+    color: white;
+    border-color: black;
 }
 
 input[type="file"] {
@@ -163,25 +240,40 @@ input[type="file"] {
 .login-signup-container {
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    flex-wrap: wrap;
+    width: 450px;
     justify-self: center;
-    justify-content: center;
-    align-items: center;
+    align-items: start;
     font-family: 'sunny weather';
-    font-size: 20px;
+    font-size: 25px;
     color: #283618;
     background-color: #BC6C25;
     border: 5px solid #DDA15E;
     border-radius: 5px;
-    padding: 10px
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    box-shadow: 2px 2px #283618;
 }
 
 .login-signup-container div {
+    display: flex;
     margin: 5px;
+    padding: 5px;
+    margin-top: 0;
+    padding-top: 0;
+    width: 430px;
+    max-width: inherit;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dashed #283618;
 }
 
 .login-signup-container button {
     width: max-content;
+    justify-self: center;
+    align-self: center;
 }
 
 form li {
@@ -194,6 +286,7 @@ form input, form select, form textarea {
     font-family: 'coolvetica';
     color: #283618;
     background-color: #fefae0;
+    text-align: right;
 }
 
 form .helptext {
@@ -201,7 +294,33 @@ form .helptext {
 }
 
 form fieldset {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
     border: 3px solid #DDA15E;
+    min-width: 0;
+    width: 430px;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+div #id_user_type {
+    margin: 5px;
+    min-width: 0;
+    width: 200px;
+    border-bottom-style: none;
+    padding: 0;
+}
+
+div #id_user_type div {
+    border-bottom-style: none;
+    padding: 0;
+}
+
+div #id_user_type label[for="id_user_type_0"] {
+    text-align: right;
+
 }
 
 form fieldset legend[for="id_image"] {
