@@ -7,8 +7,32 @@
 <h2>Create a listing</h2>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Submit</button>
+  <div class="login-signup-container">
+    {{ form }}
+    <div class="choose-file-button">
+      <label for="{{ form.image.id_for_label }}" class="custom-file-label">
+        Choose File
+      </label>
+      <span id="file-name-display">No file chosen</span>
+    </div>
+    <button type="submit">Submit</button>
+  </div>
 </form>
+
+<script>
+  const child = document.getElementById('id_image');
+  child.parentNode.style.display = 'none';
+
+  const fileInput = document.getElementById('id_image');
+  const fileNameDisplay = document.getElementById('file-name-display');
+
+  fileInput.addEventListener('change', function() {
+      if (this.files && this.files.length > 0) {
+          fileNameDisplay.textContent = this.files[0].name;
+      } else {
+          fileNameDisplay.textContent = 'No file chosen';
+      }
+  });
+</script>
 
 {% endblock %}

@@ -23,11 +23,8 @@ body {
 
 p {
     font-family: 'sunny weather';
+    font-size: 25px;
     color: #283618;
-}
-
-img {
-    width: 20vw;
 }
 
 a {
@@ -59,6 +56,8 @@ h3 {
     width: 500px;
     justify-self: center;
     align-self: center;
+    border: none;
+    border-radius: 5px;
 }
 
 .cat-detail-container {
@@ -69,13 +68,19 @@ h3 {
     padding: 10px;
     margin: 5px;
     width: 480px;
+    border: none;
+    border-radius: 5px;
 }
 
-/* .cat-image {
-    justify-self: left;
+.cat-image {
+    width: 230px;
+    max-width: fit-content;
+    height: auto;
+    border: 5px ridge #606C38;
+    border-radius: 5px;
 }
 
-.cat-link {
+/* .cat-link {
     justify-self: right;
 } */
 
@@ -88,17 +93,19 @@ h3 {
 
 .big-cat-image {
     width: 40vw;
+    max-width: 500px;
     align-items: center;
     border: 10px ridge #606C38;
     border-radius: 5px;
 }
 
-.cat-info-page p {
+/* .cat-info-page p {
     font-size: 25px;
-}
+} */
 
 button {
     font-family: 'coolvetica';
+    cursor: pointer;
     background-color: #DDA15E;
     color: #606C38;
     border-style: solid;
@@ -110,6 +117,7 @@ button {
 
 .button-link {
     display: inline-block;
+    cursor: pointer;
     background-color: #BC6C25;
     color: #fefae0;
     border-style: solid;
@@ -119,6 +127,83 @@ button {
     margin: 5px;
 }
 
-input #id_image {
-    color: purple;
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.choose-file-button {
+    display: flex;
+    text-align: center;
+    justify-self: center;
+    align-items: center;
+    font-family: 'coolvetica';
+    color: #283618;
+    margin-bottom: 15px;
+    /* gap: 10px; */
+}
+
+.custom-file-label {
+    font-family: 'coolvetica';
+    cursor: pointer;
+    text-align: center;
+    background-color: #BC6C25;
+    color: #fefae0;
+    border-style: solid;
+    border-color: #DDA15E;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.login-signup-container {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'sunny weather';
+    font-size: 20px;
+    color: #283618;
+    background-color: #BC6C25;
+    border: 5px solid #DDA15E;
+    border-radius: 5px;
+    padding: 10px
+}
+
+.login-signup-container div {
+    margin: 5px;
+}
+
+.login-signup-container button {
+    width: max-content;
+}
+
+form li {
+    list-style-type: none;
+    margin-left: -20px;
+    font-family: 'coolvetica';
+}
+
+form input, form select, form textarea {
+    font-family: 'coolvetica';
+    color: #283618;
+    background-color: #fefae0;
+}
+
+form .helptext {
+    display: none;
+}
+
+form fieldset {
+    border: 3px solid #DDA15E;
+}
+
+form fieldset legend[for="id_image"] {
+    display: none;
 }

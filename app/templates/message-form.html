@@ -6,9 +6,11 @@
 
 <h2>Send a Message</h2>
 <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-  <button id="message-button" type="submit">Submit</button>
+  {% csrf_token %}
+  <div class="login-signup-container">
+    {{ form }}
+    <button type="submit">Submit</button>
+  </div>
 </form>
 
 {% endblock %}

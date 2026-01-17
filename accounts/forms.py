@@ -11,7 +11,7 @@ class UserRegisterForm(UserCreationForm):
         queryset=Group.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=True,
-        label="Select groups to join"
+        label="Select groups to join",
     )
 
     class Meta:

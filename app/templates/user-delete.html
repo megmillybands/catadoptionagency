@@ -9,6 +9,6 @@
 <form method="POST">
     {% csrf_token %}
     <button type="submit">Yes, Delete My Account</button>
-    <a href="{% url 'profile' %}">Cancel</a>
+    <a href="{% url 'profile' %}" class="button-link">Cancel</a>
 </form>
 {% endblock %}
