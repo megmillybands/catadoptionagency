@@ -34,7 +34,7 @@ def create_listing(request):
 def edit_listing(request, name):
     user = request.user
     cat = Cat.objects.get(name=name)
-    if user.username == cat.user.username:
+    if user.username == cat.user.username or user.is_superuser:
         if request.method == "POST":
             form = CatCreationForm(request.POST, request.FILES, user=user, instance=cat)
             if form.is_valid():

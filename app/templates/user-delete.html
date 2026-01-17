@@ -4,11 +4,22 @@
 
 {% block content %}
 
-<h2>Delete User</h2>
-<p>Are you sure you want to delete your account? All of your listings will also be deleted. This action cannot be undone.</p>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="danger-button">Yes, Delete My Account</button>
+{% if user.is_superuser %}
+
+    <h2>Delete User</h2>
+    <p>Superuser accounts cannot be deleted.</p>
     <a href="{% url 'profile' %}" class="button-link">Cancel</a>
-</form>
+    
+{% else %}
+
+    <h2>Delete User</h2>
+    <p>Are you sure you want to delete your account? All of your listings will also be deleted. This action cannot be undone.</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="danger-button">Yes, Delete My Account</button>
+        <a href="{% url 'profile' %}" class="button-link">Cancel</a>
+    </form>
+
+{% endif %}
+
 {% endblock %}

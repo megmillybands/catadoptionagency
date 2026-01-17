@@ -3,6 +3,8 @@ from .forms import *
 from accounts.models import *
 from app.models import *
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
 
 def signup_view(request):
@@ -34,6 +36,7 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
+@login_required
 def profile_view(request):
     user = request.user
     active_user = User.objects.get(username=user.username)
@@ -44,6 +47,7 @@ def profile_view(request):
     return render(request, 'profile.html', context)
 
 
+@login_required
 def edit_account(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
@@ -56,18 +60,20 @@ def edit_account(request):
     return render(request, 'profile-details.html', {"form": form})
 
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('/')
     else:
         form = PasswordChangeForm(user=request.user)
 
     return render(request, 'profile-details.html', {"form": form})
 
 
+@login_required
 def delete_account(request):
     user = request.user
     if request.method == 'POST':

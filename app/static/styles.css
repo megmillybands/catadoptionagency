@@ -101,6 +101,10 @@ h3 {
     box-shadow: 2px 2px #283618;
 }
 
+.cat-info-page p {
+    max-width: 500px;
+}
+
 .cat-container {
     display: flex;
     flex-wrap: wrap;
@@ -108,6 +112,7 @@ h3 {
     background: #BC6C25;
     width: 500px;
     justify-self: center;
+    justify-content: center;
     align-self: center;
     border: none;
     border-radius: 5px;
@@ -116,8 +121,9 @@ h3 {
 
 .cat-detail-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     background-color: #DDA15E;
     padding: 10px;
     margin: 5px;
@@ -128,6 +134,7 @@ h3 {
 }
 
 .cat-image {
+    /* justify-self: start; */
     width: 230px;
     max-width: fit-content;
     height: auto;
@@ -138,7 +145,8 @@ h3 {
 
 .cat-link {
     color: #BC6C25;
-    width: 230px;
+    text-align: left;
+    margin-left: 15px;
 }
 
 .cat-link:hover {
@@ -320,9 +328,13 @@ div #id_user_type div {
 
 div #id_user_type label[for="id_user_type_0"] {
     text-align: right;
-
 }
 
 form fieldset legend[for="id_image"] {
     display: none;
+}
+
+form div:has(> label[for="id_is_superuser"]) {
+    display: none;
+    visibility: hidden;
 }

@@ -9,7 +9,7 @@
 <h1>{{ cat.name }}</h1>
 <h2>{{ cat.age }} {{ cat.gender }} {{ cat.breed }}</h2>
 
-{% if user.username == cat.user.username %}
+{% if user.username == cat.user.username or user.is_superuser %}
 
 <div class="button-container">
     <a href="{% url 'edit_listing' cat.name %}" class="button-link">Edit Listing</a>

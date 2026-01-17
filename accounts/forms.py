@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordResetForm, PasswordChangeForm
 from django.contrib.auth.models import User, Group
 from django import forms
+from django.forms import HiddenInput
 
 
 class UserRegisterForm(UserCreationForm):
@@ -13,10 +14,14 @@ class UserRegisterForm(UserCreationForm):
         required=True,
         label="Select groups to join",
     )
+    is_superuser = forms.BooleanField(required=False)
 
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email", "user_type", "username"]
+        widgets = {
+            'is_superuser': HiddenInput()
+        }
 
 
 class LoginForm(AuthenticationForm):

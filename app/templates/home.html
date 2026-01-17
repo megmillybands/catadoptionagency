@@ -19,14 +19,18 @@
 
 <h2>Cat Listings</h2>
 <div class="cat-container">
-    {% for cat in cats %}
-        <div class="cat-detail-container">
-            <img src="{{ cat.image.url }}" class="cat-image">
-            <a href="{% url 'cat_details' cat.name %}" class="cat-link">
-            {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
-            </a>
-        </div>
-    {% endfor %}
+    {% if cats %}
+        {% for cat in cats %}
+            <div class="cat-detail-container">
+                <img src="{{ cat.image.url }}" class="cat-image">
+                <a href="{% url 'cat_details' cat.name %}" class="cat-link">
+                {{ cat.name }} - {{ cat.age }} - {{ cat.gender }} - {{ cat.breed }}
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>There are no cats available!</p>
+    {% endif %}
 </div>
 
 {% else %}
